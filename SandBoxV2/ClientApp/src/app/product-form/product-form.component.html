@@ -4,10 +4,10 @@
       <h3 class="panel-title">Add Product</h3>
     </div>
     <div class="panel-body">
-      <div class="form-group" [class.has-error]="nameControl.invalid">
+      <div class="form-group" [class.has-error]="nameControl.invalid && quantityControl.touched">
         <label class="col-sm-2 control-label" for="name">Name</label>
         <div class="col-sm-8">
-          <input id="name" name="name" type="text" class="form-control" [(ngModel)]="product.name" #nameControl="ngModel" >
+          <input id="name" name="name" type="text" required  class="form-control" [(ngModel)]="product.name" #nameControl="ngModel" >
           <span class="help-block" *ngIf="nameControl.invalid && nameControl.touched">
             Name is required
           </span>
@@ -24,7 +24,7 @@
       <div class="form-group" [class.has-error]="quantityControl.invalid && quantityControl.touched">
         <label class="col-sm-2 control-label" for="quantity">Quantity</label>
         <div class="col-sm-8">
-          <input id="quantity" name="quantity" type="number" class="form-control" [(ngModel)]="product.quantity" #quantityControl="ngModel">
+          <input id="quantity" name="quantity" required  type="number" class="form-control" [(ngModel)]="product.quantity" #quantityControl="ngModel">
           <span class="help-block" *ngIf="quantityControl.invalid && quantityControl.touched">
             Quantity is required
           </span>
