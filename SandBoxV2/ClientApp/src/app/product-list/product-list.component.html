@@ -1,0 +1,26 @@
+<!--<div [(ngModel)]="products">-->
+<h1>Product Catalogue</h1>
+
+
+<p *ngIf="!productService.products"><em>Loading...</em></p>
+<p *ngIf="productService.products?.length == 0"><em>There are not products availble, you may add as you wish</em></p>
+
+
+
+<table class='table' *ngIf="productService.products && productService.products?.length > 0">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Short Description</th>
+      <th>Quantity Availble</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of productService.products">
+      <td>{{ product.name }}</td>
+      <td>{{ product.description }}</td>
+      <td>{{ product.quantity }}</td>
+    </tr>
+  </tbody>
+</table>
+<!--</div>-->
