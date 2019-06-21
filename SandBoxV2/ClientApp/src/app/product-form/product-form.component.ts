@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, ValidatorFn, AbstractControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, ValidatorFn, AbstractControl, Validators, ValidationErrors } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { error } from 'util';
 import { Console } from '@angular/core/src/console';
@@ -15,7 +15,7 @@ import { ProductService} from '../services/productService'
   providers: [ProductService]
 })
 export class ProductFormComponent implements OnInit {
-  uniqueProductGroup: FormControl
+  uniqueProductGroup: FormGroup
   httpClient: HttpClient
   url: string
   productService: ProductService;
@@ -34,7 +34,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.uniqueProductGroup = new FormControl('', [this.uniqueProductValidator(this.product.name)]);
+    this.uniqueProductGroup = new FormGroup({}), { validators: this.uniqueProductValidator};
    
   } 
 
@@ -63,6 +63,8 @@ export class ProductFormComponent implements OnInit {
       };
   }
 
+  
+
   add(p :Product) : Observable<Product> {
     let u = this.url + 'api/Product'
     return this.httpClient.post<Product>(u, p, {
@@ -75,6 +77,13 @@ export class ProductFormComponent implements OnInit {
 
   
 }
+
+export const identityRevealedValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
+  const name = control.get('name');
+  const alterEgo = control.get('alterEgo');
+
+  return name && alterEgo && name.value === alterEgo.value ? { 'identityRevealed': true } : null;
+};
 
 export class Product {
   name: string;

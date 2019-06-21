@@ -7,10 +7,13 @@
       <div class="form-group" [class.has-error]="(nameControl.invalid && nameControl.touched) ">
         <label class="col-sm-2 control-label" for="name">Name</label>
         <div class="col-sm-8">
-          
-          <input id="name" name="name" type="text" required class="form-control" [(ngModel)]="product.name" #nameControl="ngModel" uniqueProductValidator="product.name">
+
+          <input id="name" name="name" type="text" required class="form-control" [(ngModel)]="product.name" #nameControl="ngModel" >
           <span class="help-block" *ngIf="nameControl.invalid && nameControl.touched">
             Name is required
+          </span>
+          <span class="help-block" *ngIf="uniqueProductGroup.errors?.uniqueProductValidator(product.name)">
+            Name is Duplicate
           </span>
         </div>
       </div>
