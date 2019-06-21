@@ -11974,23 +11974,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\William\\.nuget\\packages\\": {},
+    "C:\\Users\\wwendell\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\SF.Code\\SandBoxV2\\SbApi\\SbApi.csproj",
+      "projectUniqueName": "C:\\Users\\wwendell\\Source\\Repos\\WendellSphere\\SandBoxV2\\SbApi\\SbApi.csproj",
       "projectName": "SbApi",
-      "projectPath": "C:\\SF.Code\\SandBoxV2\\SbApi\\SbApi.csproj",
-      "packagesPath": "C:\\Users\\William\\.nuget\\packages\\",
-      "outputPath": "C:\\SF.Code\\SandBoxV2\\SbApi\\obj\\",
+      "projectPath": "C:\\Users\\wwendell\\Source\\Repos\\WendellSphere\\SandBoxV2\\SbApi\\SbApi.csproj",
+      "packagesPath": "C:\\Users\\wwendell\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\wwendell\\Source\\Repos\\WendellSphere\\SandBoxV2\\SbApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\William\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\wwendell\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
