@@ -1,13 +1,14 @@
-<form class="form-horizontal" #productForm="ngForm" (ngSubmit)="onSubmit(product); productForm.reset()"  >
+<form class="form-horizontal" #productForm="ngForm" (ngSubmit)=" onSubmit(product); productForm.reset()"  >
   <div class="panel panel-primary">
     <div class="panel-heading">
       <h3 class="panel-title">Add Product</h3>
     </div>
     <div class="panel-body">
-      <div class="form-group" [class.has-error]="nameControl.invalid && quantityControl.touched">
+      <div class="form-group" [class.has-error]="(nameControl.invalid && nameControl.touched) ">
         <label class="col-sm-2 control-label" for="name">Name</label>
         <div class="col-sm-8">
-          <input id="name" name="name" type="text" required  class="form-control" [(ngModel)]="product.name" #nameControl="ngModel" >
+          
+          <input id="name" name="name" type="text" required class="form-control" [(ngModel)]="product.name" #nameControl="ngModel" uniqueProductValidator="product.name">
           <span class="help-block" *ngIf="nameControl.invalid && nameControl.touched">
             Name is required
           </span>

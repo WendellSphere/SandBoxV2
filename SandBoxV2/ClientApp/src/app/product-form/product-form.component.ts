@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, ValidatorFn, AbstractControl } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { error } from 'util';
 import { Console } from '@angular/core/src/console';
@@ -15,7 +15,7 @@ import { ProductService} from '../services/productService'
   providers: [ProductService]
 })
 export class ProductFormComponent implements OnInit {
-  //productForm: FormGroup
+  uniqueProductGroup: FormControl
   httpClient: HttpClient
   url: string
   productService: ProductService;
@@ -34,8 +34,9 @@ export class ProductFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.uniqueProductGroup = new FormControl('', [this.uniqueProductValidator(this.product.name)]);
    
-  }
+  } 
 
   onSubmit(p: Product) {
     this.productService.add(p).subscribe((data: Product) => { }, (error: any) => console.log(error));
@@ -44,6 +45,22 @@ export class ProductFormComponent implements OnInit {
 
   isProductDup(name: string) : boolean {
     return this.productService.getProduct(name) != null
+  }
+
+  uniqueProductValidator(name: string): ValidatorFn  {
+    //let name = control.value;
+    //if (this.productService.getProduct(name) != null) {
+    //  return "DuplicateProduct";
+    //}
+    //return null;
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const isDuplicateProduct = this.isProductDup(control.value);
+      return isDuplicateProduct ? {
+        'duplicatedProduct': {
+          value: control.value
+        }
+      } : null;
+      };
   }
 
   add(p :Product) : Observable<Product> {
