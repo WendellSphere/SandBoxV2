@@ -15,10 +15,18 @@ namespace SandBoxV2.Repositories
 
         public override void Add(Product item)
         {
-            if (Items.Where(i => i.Name == item.Name).Count() == 0)
-                base.Add(item);
+            if(item != null)
+            {
+                if (Items.Where(i => i.Name == item.Name).Count() == 0)
+                    base.Add(item);
+                else
+                    throw new ArgumentException("A product with the same name already exists in the system, please provide a different product name");
+            }
             else
-                throw new ArgumentException("A product with the same name already exists in the system, please provide a different product name");
+            {
+                throw new ArgumentException("product contains no values");
+            }
+            
         }
 
         private void LoadProducts()

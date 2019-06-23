@@ -8,11 +8,11 @@
         <label class="col-sm-2 control-label" for="name">Name</label>
         <div class="col-sm-8">
 
-          <input id="name" name="name" type="text" required class="form-control" [(ngModel)]="product.name" #nameControl="ngModel" >
+          <input id="name" name="name" type="text" required class="form-control" [(ngModel)]="product.name" #nameControl="ngModel" productDuplicate><!--productDuplicate="product.name" -->
           <span class="help-block" *ngIf="nameControl.invalid && nameControl.touched">
             Name is required
           </span>
-          <span class="help-block" *ngIf="uniqueProductGroup.errors?.uniqueProductValidator(product.name)">
+          <span class="help-block" *ngIf="nameControl.errors?.productDuplicate">
             Name is Duplicate
           </span>
         </div>
@@ -28,7 +28,7 @@
       <div class="form-group" [class.has-error]="quantityControl.invalid && quantityControl.touched">
         <label class="col-sm-2 control-label" for="quantity">Quantity</label>
         <div class="col-sm-8">
-          <input id="quantity" name="quantity" required  type="number" class="form-control" [(ngModel)]="product.quantity" #quantityControl="ngModel">
+          <input id="quantity" name="quantity" required  type="number" class="form-control" [(ngModel)]="product.quantity" #quantityControl="ngModel" >
           <span class="help-block" *ngIf="quantityControl.invalid && quantityControl.touched">
             Quantity is required
           </span>

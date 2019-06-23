@@ -15,7 +15,7 @@ import { ProductService} from '../services/productService'
   providers: [ProductService]
 })
 export class ProductFormComponent implements OnInit {
-  uniqueProductGroup: FormGroup
+  nameControl: FormGroup
   httpClient: HttpClient
   url: string
   productService: ProductService;
@@ -34,7 +34,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.uniqueProductGroup = new FormGroup({}), { validators: this.uniqueProductValidator};
+    this.nameControl = new FormGroup({}), { validators: this.uniqueProductValidator};
    
   } 
 
