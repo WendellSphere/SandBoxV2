@@ -25,7 +25,7 @@ Alternatively you can try to deploy to iis webserver and run it there.
 
 ## Debuging
 
-Clone the repository and run it in visual Studio (I debuged in visual studio 2017). Runing it via anuglar cli may cause some errors due to the current url configuration.
+Clone the repository and open it in visual Studio (I debuged in visual studio 2017). Chose the SandBoxV2 solution and then run it. It may take several minutes because it may have restore some npm packages. Runing it via anuglar cli may cause some errors due to the current url configuration.
 
 ## Author
 
