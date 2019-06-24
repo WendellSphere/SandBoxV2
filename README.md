@@ -17,7 +17,7 @@ Navigate to the .exe file, right click and run it. Grab one of the urls on the c
 ![alt text](https://github.com/WendellSphere/SandBoxV2/blob/master/SandBoxV2/InstructionsContent/ExePic3.JPG)
 
 4. 
-![alt text](https://github.com/WendellSphere/SandBoxV2/blob/master/SandBoxV2/InstructionsContent/ExePic4.JPG)
+![alt text](https://github.com/WendellSphere/SandBoxV2/blob/master/SandBoxV2/InstructionsContent/exePic4.JPG)
 
 
 ## Authors
