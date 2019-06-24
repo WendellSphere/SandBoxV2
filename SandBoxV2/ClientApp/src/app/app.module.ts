@@ -11,7 +11,7 @@ import { ProductFormComponent } from './product-form/product-form.component';
 import { ProductService } from './services/productService'
 import { ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -25,6 +25,7 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot(),
     RouterModule.forRoot([
       { path: '', component: ProductListComponent },
