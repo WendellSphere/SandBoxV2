@@ -29,7 +29,7 @@ Clone the repository and open it in visual Studio (I debuged in visual studio 20
 
 ## Author
 
-* **Will Wendell** - *Initial work* - [WendellSphere](https://github.com/WendellSphere)
+* **Will Wendell** - [WendellSphere](https://github.com/WendellSphere)
 
 
 
