@@ -3,7 +3,7 @@
 ProductStore is a web app that allows you to add and view products.
 
 ## Getting Started
-In order to get started you need the deployed files which I will or already sent to you. Once you have those refer to the steps below
+In order to get started you need the deployed files which I or my liaison have already sent to you. Once you have those refer to the steps below:
 
 Navigate to the .exe file, right click and run it. Grab one of the urls on the command line and paste to the browser. See images below:
 
