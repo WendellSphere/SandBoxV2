@@ -41,16 +41,22 @@ export class ProductFormComponent implements OnInit {
 
   onSubmit(submittedProduct: Product) {
 
-    this.productService.addIfNotDuplicate(submittedProduct.name, submittedProduct).then((product) => {
-      if (product != null) {
-        this.toastrService.warning("Product name " + product.name + " is already in the system, please chose another name");
-      }
-      else {
-        this.toastrService.success("Product added");
-      }
-    }, (error) => {
-      console.log(error);
-    });
+    if (submittedProduct == null || submittedProduct.name == null || submittedProduct.quantity == null) {
+      this.toastrService.warning("Invalid Input, please enter a product name and quantity");
+    }
+    else {
+      this.productService.addIfNotDuplicate(submittedProduct.name, submittedProduct).then((product) => {
+        if (product != null) {
+          this.toastrService.warning("Product name " + product.name + " is already in the system, please chose another name");
+        }
+        else {
+          this.toastrService.success("Product added");
+        }
+      }, (error) => {
+        console.log(error);
+      });
+
+    }
 
   }
 
