@@ -9,7 +9,7 @@ namespace SandBoxV2.Models
 {
     public class Product
     {
-        public  Product(string name, string description, double quantity)
+        public  Product(string name, string description, int quantity)
         {
             Name = name;
             Description = description;
@@ -22,6 +22,6 @@ namespace SandBoxV2.Models
         public string Description { get; set; }
 
         [Required(ErrorMessage = "Quantity is required")]
-        public double Quantity { get; set; }
+        public int Quantity { get; set; }
     }
 }

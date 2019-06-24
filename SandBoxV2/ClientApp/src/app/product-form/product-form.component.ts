@@ -1,10 +1,14 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, ValidatorFn, AbstractControl, Validators, ValidationErrors } from '@angular/forms';
+import { FormGroup, FormBuilder, ValidatorFn, AbstractControl, Validators, ValidationErrors, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { error } from 'util';
 import { Console } from '@angular/core/src/console';
 import { Observable } from 'rxjs/Observable';
-import { ProductService} from '../services/productService'
+import { ProductService } from '../services/productService'
+import { ToastrService } from 'ngx-toastr';
+import { first } from 'rxjs/operator/first';
+import { filter } from 'rxjs/operator/filter';
+import { Product } from '../models/Product';
 
 
 
@@ -15,79 +19,56 @@ import { ProductService} from '../services/productService'
   providers: [ProductService]
 })
 export class ProductFormComponent implements OnInit {
-  nameControl: FormGroup
-  httpClient: HttpClient
-  url: string
-  productService: ProductService;
-  product: Product = {
-    name: "",
-    description: "",
-    quantity: 1
-  }
-  
-  
+  nameControlGroup: FormGroup
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, p: ProductService) {
-    this.httpClient = http;
-    this.url = baseUrl
-    this.productService = p;
+  product: Product = {
+    name: null,
+    description: null,
+    quantity: null
+  }
+
+  addProduct: Product[] = []
+
+  constructor(private httpClient: HttpClient,
+    @Inject('BASE_URL') private baseUrl: string,
+    private productService: ProductService,
+    private toastrService: ToastrService) {
   }
 
   ngOnInit() {
-    this.nameControl = new FormGroup({}), { validators: this.uniqueProductValidator};
-   
-  } 
-
-  onSubmit(p: Product) {
-    this.productService.add(p).subscribe((data: Product) => { }, (error: any) => console.log(error));
     this.productService.products = this.productService.getProducts();
   }
 
-  isProductDup(name: string) : boolean {
-    return this.productService.getProduct(name) != null
+  onSubmit(p: Product) {
+    this.productService.products = this.productService.getProducts();
+    if (!p.name) {
+      this.toastrService.warning("please enter a product name before submiting");
+    }
+    else if (this.productService.products.filter(p2 => p2.name == p.name).length > 0) {
+      this.toastrService.warning("Product name " + p.name + " is already in the system, please chose another name");
+    }
+    else {
+      this.productService.add(p).subscribe((data: Product) => { this.toastrService.success("Product added"); }, (error: any) => console.log(error));
+      this.productService.products = this.productService.getProducts();
+    }
   }
 
-  uniqueProductValidator(name: string): ValidatorFn  {
-    //let name = control.value;
-    //if (this.productService.getProduct(name) != null) {
-    //  return "DuplicateProduct";
-    //}
-    //return null;
-    return (control: AbstractControl): { [key: string]: any } | null => {
-      const isDuplicateProduct = this.isProductDup(control.value);
-      return isDuplicateProduct ? {
-        'duplicatedProduct': {
-          value: control.value
-        }
-      } : null;
-      };
+  isProductDup(name: string): boolean {
+    let p = this.productService.getProduct(name); 
+
+    return (p != null && p.name != null);
   }
 
-  
-
-  add(p :Product) : Observable<Product> {
-    let u = this.url + 'api/Product'
+  add(p: Product): Observable<Product> {
+    let u = this.baseUrl + 'api/Product'
     return this.httpClient.post<Product>(u, p, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     });
-    // .pipe(catchError(this.handleError));
+   
   }
 
-  
-}
 
-export const identityRevealedValidator: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
-  const name = control.get('name');
-  const alterEgo = control.get('alterEgo');
-
-  return name && alterEgo && name.value === alterEgo.value ? { 'identityRevealed': true } : null;
-};
-
-export class Product {
-  name: string;
-  description: string;
-  quantity: number;
 }
 

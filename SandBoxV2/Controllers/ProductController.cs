@@ -23,7 +23,15 @@ namespace SandBoxV2.Controllers
         [HttpGet]
         public IEnumerable<Product> Get()
         {
-            return _productRepo.Items;
+            try
+            {
+                return _productRepo.Items;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         // POST api/<controller>
@@ -31,6 +39,21 @@ namespace SandBoxV2.Controllers
         public void Post([FromBody] Product product)
         {
             _productRepo.Add(product);
+        }
+
+        [HttpGet("{name}")]
+        public Product Get(string name)
+        {
+            try
+            {
+                Product product = _productRepo.Items.Where(p => p.Name == name).FirstOrDefault();
+                return product;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         #region Later Implmentation
@@ -56,6 +79,6 @@ namespace SandBoxV2.Controllers
         {
         }
         */
-#endregion
+        #endregion
     }
 }
