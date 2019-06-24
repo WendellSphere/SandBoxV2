@@ -1,13 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, ValidatorFn, AbstractControl, Validators, ValidationErrors, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { error } from 'util';
-import { Console } from '@angular/core/src/console';
-import { Observable } from 'rxjs/Observable';
 import { ProductService } from '../services/productService'
 import { ToastrService } from 'ngx-toastr';
-import { first } from 'rxjs/operator/first';
-import { filter } from 'rxjs/operator/filter';
 import { Product } from '../models/Product';
 
 

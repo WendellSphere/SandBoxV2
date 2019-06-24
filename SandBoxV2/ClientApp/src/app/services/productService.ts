@@ -1,10 +1,10 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { Product } from '../models/Product';
+import { Observable } from 'rxjs';
 
 
 @Injectable()
@@ -55,9 +55,3 @@ export  class ProductService {
 }
 
 
-
-interface  IProduct {
-  name: string;
-  description: string;
-  quantity: number;
-}
