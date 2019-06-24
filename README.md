@@ -7,16 +7,16 @@ In order to get started you need the deployed files which I will or already sent
 
 Navigate to the .exe file, right click and run it. Grab one of the urls on the command line and paste to the browser. See images below:
 
-1. 
+1. Find the exe file
 ![alt text](https://github.com/WendellSphere/SandBoxV2/blob/master/SandBoxV2/InstructionsContent/ExePic.JPG)
 
-2 .
+2 . Right click Run as adminstrator
 ![alt text](https://github.com/WendellSphere/SandBoxV2/blob/master/SandBoxV2/InstructionsContent/ExePic2.JPG)
 
-3.
+3. Copy one of the localhost urls
 ![alt text](https://github.com/WendellSphere/SandBoxV2/blob/master/SandBoxV2/InstructionsContent/ExePic3.JPG)
 
-4. 
+4. paste on browser and viola
 ![alt text](https://github.com/WendellSphere/SandBoxV2/blob/master/SandBoxV2/InstructionsContent/exePic4.JPG)
 
 
