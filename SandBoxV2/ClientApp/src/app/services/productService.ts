@@ -34,8 +34,8 @@ export  class ProductService {
     return this.httpClient.get<Product>(this.baseUrl + 'api/Product/' + name).map((response: Product) => response).toPromise();
   }
 
-  addIfNotDuplicate(name: string, subProduct: Product): Promise<Product> {
-    return this.httpClient.post<Product>(this.baseUrl + 'api/Product/' + name, subProduct, {
+  addIfNotDuplicate(productName: string, subProduct: Product): Promise<Product> {
+    return this.httpClient.post<Product>(this.baseUrl + 'api/Product/' + productName, subProduct, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
