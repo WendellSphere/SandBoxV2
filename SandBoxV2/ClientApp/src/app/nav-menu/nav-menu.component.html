@@ -7,19 +7,19 @@
         <span class='icon-bar'></span>
         <span class='icon-bar'></span>
       </button>
-      <a class='navbar-brand' [routerLink]='["/"]'>ProductStore</a>
+      <a class='navbar-brand' [routerLink]='["/productList"]'>ProductStore</a>
     </div>
     <div class='clearfix'></div>
     <div class='navbar-collapse collapse' [ngClass]='{ "in": isExpanded }'>
       <ul class='nav navbar-nav'>
-        <li [routerLinkActive]='["link-active"]'>
-          <a [routerLink]='["/productForm"]' (click)='collapse()'>
-            <span class='glyphicon glyphicon-education'></span> Add Product
+        <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+          <a [routerLink]='["/productList"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-th-list'></span> Product List
           </a>
         </li>
         <li [routerLinkActive]='["link-active"]'>
-          <a [routerLink]='["/productList"]' (click)='collapse()'>
-            <span class='glyphicon glyphicon-th-list'></span> Product List
+          <a [routerLink]='["/productForm"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-education'></span> Add Product
           </a>
         </li>
       </ul>

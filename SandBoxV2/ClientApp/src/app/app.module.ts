@@ -8,8 +8,10 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductFormComponent } from './product-form/product-form.component';
-import { ProductService} from './services/productService'
-//import { ReactiveFormsModule } from '@angular/forms';
+import { ProductService } from './services/productService'
+import { ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,10 @@ import { ProductService} from './services/productService'
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
     RouterModule.forRoot([
+      { path: '', component: ProductListComponent },
       { path: 'productList', component: ProductListComponent },
       { path: 'productForm', component: ProductFormComponent }
     ])
@@ -30,4 +35,7 @@ import { ProductService} from './services/productService'
   providers: [ProductService],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
+
+

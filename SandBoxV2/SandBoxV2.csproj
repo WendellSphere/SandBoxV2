@@ -32,13 +32,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\models\Product.ts" />
     <None Remove="ClientApp\src\app\product-form\product-form.component.ts" />
     <None Remove="ClientApp\src\app\services\productService.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\models\Product.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\product-form\product-form.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\productService.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\app\directives\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
@@ -67,5 +73,7 @@
       </ResolvedFileToPublish>
     </ItemGroup>
   </Target>
+
+  <ProjectExtensions><VisualStudio><UserProperties Properties_4launchSettings_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

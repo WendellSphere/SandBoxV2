@@ -1,11 +1,11 @@
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
+
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
 export function getBaseUrl() {
-  var url = document.getElementsByTagName('base')[0].href;
   return document.getElementsByTagName('base')[0].href;
 }
 

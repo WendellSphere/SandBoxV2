@@ -32,7 +32,7 @@ namespace SandBoxV2
             });
 
 
-            services.AddSingleton<IProductRepository, ProductRepository> ();
+            services.AddSingleton<IProductRepository, ProductRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
