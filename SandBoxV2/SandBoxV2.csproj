@@ -32,11 +32,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\directives\duplicate-product.directive.ts" />
     <None Remove="ClientApp\src\app\product-form\product-form.component.ts" />
     <None Remove="ClientApp\src\app\services\productService.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\directives\duplicate-product.directive.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\product-form\product-form.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\services\productService.ts" />
   </ItemGroup>

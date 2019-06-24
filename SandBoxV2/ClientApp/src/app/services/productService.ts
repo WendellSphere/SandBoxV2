@@ -7,17 +7,17 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export  class ProductService {
   public  products: Product[] = []
-  httpClient: HttpClient;
-  url: string;
+  //httpClient: HttpClient;
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    this.httpClient = http;
-    this.url = baseUrl;
-    this.getProducts();
-  }
+  constructor(private httpClient: HttpClient,  @Inject('BASE_URL')  private baseUrl: string) {}
+  //constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  //  this.httpClient = http;
+  //  this.url = baseUrl;
+  //  this.getProducts();
+  //}
 
   getProducts() : Product [] {
-     this.httpClient.get<Product[]>(this.url + 'api/Product').subscribe(result => {
+    this.httpClient.get<Product[]>(this.baseUrl + 'api/Product').subscribe(result => {
       this.products = result;
     }, error => console.error(error));
 
@@ -26,7 +26,7 @@ export  class ProductService {
 
   getProduct(name: string): Product {
     var product;
-    this.httpClient.get<Product[]>(this.url + 'api/Product/' + name).subscribe(result => {
+    this.httpClient.get<Product[]>(this.baseUrl+ 'api/Product/' + name).subscribe(result => {
       product = result;
     }, error => console.error(error));
 
@@ -34,7 +34,7 @@ export  class ProductService {
   }
 
   add(p: Product): Observable<Product> {
-    let u = this.url + 'api/Product'
+    let u = this.baseUrl + 'api/Product'
     return this.httpClient.post<Product>(u, p, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
