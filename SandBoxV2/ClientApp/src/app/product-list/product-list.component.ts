@@ -10,18 +10,11 @@ import { Product } from '../models/Product';
   providers: [ProductService]
 })
 export class ProductListComponent implements OnInit {
-  productService: ProductService;
-  httpClient: HttpClient;
-  url: string;
   timerSubscription: any;
   productsSubscription: any;
 
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, p: ProductService) {
-    this.httpClient = http;
-    this.url = baseUrl
-    this.productService = p;
-  }
+  constructor(private productService: ProductService) {}
 
   ngOnInit() {
     this.refreshData();

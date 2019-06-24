@@ -27,7 +27,8 @@ export class ProductFormComponent implements OnInit {
     quantity: null
   }
 
-  addProduct: Product[] = []
+  isDup: boolean = false
+  submittedProduct: Product
 
   constructor(private httpClient: HttpClient,
     @Inject('BASE_URL') private baseUrl: string,
@@ -36,37 +37,21 @@ export class ProductFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.productService.products = this.productService.getProducts();
   }
 
-  onSubmit(p: Product) {
-    this.productService.products = this.productService.getProducts();
-    if (!p.name) {
-      this.toastrService.warning("please enter a product name before submiting");
-    }
-    else if (this.productService.products.filter(p2 => p2.name == p.name).length > 0) {
-      this.toastrService.warning("Product name " + p.name + " is already in the system, please chose another name");
-    }
-    else {
-      this.productService.add(p).subscribe((data: Product) => { this.toastrService.success("Product added"); }, (error: any) => console.log(error));
-      this.productService.products = this.productService.getProducts();
-    }
-  }
+  onSubmit(submittedProduct: Product) {
 
-  isProductDup(name: string): boolean {
-    let p = this.productService.getProduct(name); 
-
-    return (p != null && p.name != null);
-  }
-
-  add(p: Product): Observable<Product> {
-    let u = this.baseUrl + 'api/Product'
-    return this.httpClient.post<Product>(u, p, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
+    this.productService.addIfNotDuplicate(submittedProduct.name, submittedProduct).then((product) => {
+      if (product != null) {
+        this.toastrService.warning("Product name " + product.name + " is already in the system, please chose another name");
+      }
+      else {
+        this.toastrService.success("Product added");
+      }
+    }, (error) => {
+      console.log(error);
     });
-   
+
   }
 
 

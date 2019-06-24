@@ -41,12 +41,18 @@ namespace SandBoxV2.Controllers
             _productRepo.Add(product);
         }
 
-        [HttpGet("{name}")]
-        public Product Get(string name)
+        [HttpPost("{name}")]
+        public Product Post(string name, [FromBody] Product submittedProduct)
         {
             try
             {
                 Product product = _productRepo.Items.Where(p => p.Name == name).FirstOrDefault();
+
+                if(product == null)
+                {
+                    _productRepo.Add(submittedProduct);
+                }
+
                 return product;
             }
             catch (Exception)
